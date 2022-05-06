@@ -1,7 +1,7 @@
 #!/bin/sh
 # ref: https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
 #
-# Usage example: /bin/sh ./git_push.sh megaxzy swagger-go-client "xzy update"
+# Usage example: /bin/sh ./git_push.sh wing328 swagger-petstore-perl "minor update"
 
 git_user_id=$1
 git_repo_id=$2
@@ -38,10 +38,8 @@ if [ "$git_remote" = "" ]; then # git remote not defined
     if [ "$GIT_TOKEN" = "" ]; then
         echo "[INFO] \$GIT_TOKEN (environment variable) is not set. Using the git credential in your environment."
         git remote add origin https://github.com/${git_user_id}/${git_repo_id}.git
-        #git remote add origin https://github.com/megaxzy/swagger-go-client.git
     else
         git remote add origin https://${git_user_id}:${GIT_TOKEN}@github.com/${git_user_id}/${git_repo_id}.git
-         #git remote add origin https://github.com/megaxzy/swagger-go-client.git
     fi
 
 fi
@@ -50,10 +48,5 @@ git pull origin master
 
 # Pushes (Forces) the changes in the local repository up to the remote repository
 echo "Git pushing to https://github.com/${git_user_id}/${git_repo_id}.git"
-echo git push origin master #2>&1 | grep -v 'To https'
-spawn git push origin master #2>&1 | grep -v 'To https'
-expect "Username*"
-send  919482827@qq.com
-expect "Password*"
-send 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
+git push origin master 2>&1 | grep -v 'To https'
 
